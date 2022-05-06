@@ -2,7 +2,7 @@
 
 include_once 'Colaborador.php';
 include_once 'Morada.php';
-include_once 'Agente.php'
+include_once 'Agente.php';
 class Modelo{
     public string $sexo;
     public string $nacionalidade;
