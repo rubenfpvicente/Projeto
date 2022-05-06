@@ -3,7 +3,7 @@
 include_once 'Colaborador.php';
 include_once 'Morada.php';
 include_once 'Agente.php';
-class Modelo{
+class Modelo extends Colaborador {
     public string $sexo;
     public string $nacionalidade;
     public float $altura;
