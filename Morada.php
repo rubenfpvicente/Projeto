@@ -1,5 +1,7 @@
 <?php
 
+include_once 'Colaborador.php';
+
 class Morada{
     public string $rua;
     public int $porta;
