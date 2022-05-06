@@ -1,5 +1,5 @@
 git add .
-git commit -m "Updated"
+git commit -am "Updated"
 git checkout main
 git merge dev
 git push -u origin main
