@@ -1,18 +1,21 @@
 <?php
 
-include_once 'Morada.php';
+class Colaborador
+{
+    public $codigo;
+    public $nome;
+    public $morada;
+    public $contacto;
+    public $nif;
 
-class Colaborador {
-    public string $nome;
-    public array $morada;
-    public int $contacto;
-    public int $nif;
-
-    public function __construct($nome, $rua, $porta, $codPostal, $cidade, $pais, $contacto, $nif) {
-        $this -> nome = $nome;
-        $this -> morada[] = new Morada($rua, $porta, $codPostal, $cidade, $pais);
-        $this -> contacto = $contacto;
-        $this -> nif = $nif;
+    public function __construct(string $nome, Morada $morada, string $contacto, string $nif)
+    {
+        $this->nome = $nome;
+        $this->morada = $morada;
+        $this->contacto = $contacto;
+        $this->nif = $nif;
     }
-    
+
+    // o resto das coisas
+
 }
