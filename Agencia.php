@@ -19,6 +19,13 @@ class Agencia{
     public function AdicionarModelo(Modelo $modelo) 
     {
         $this->modelos[] = $modelo;
+        $modelo->codigo=count($this->modelos)-1;
+    }
+
+    public function AdicionarAgente(Agente $agente) 
+    {
+        $this->agentes[] = $agente;
+        $agente->codigo=count($this->agentes)-1;
     }
     
     public function exportar()
