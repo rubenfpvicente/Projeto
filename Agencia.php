@@ -27,6 +27,12 @@ class Agencia{
         $this->agentes[] = $agente;
         $agente->codigo=count($this->agentes)-1;
     }
+
+    public function AdicionarFotografo(Fotografo $fotografo) 
+    {
+        $this->fotografos[] = $fotografo;
+        $fotografo->codigo=count($this->fotografos)-1;
+    }
     
     public function exportar()
     {
