@@ -1,9 +1,9 @@
 <?php
 
 require_once 'Morada.php';
-require_once 'Agencia.php';
 require_once 'Colaborador.php';
 require_once 'Modelo.php';
+require_once 'Agencia.php';
 
 
 $morada = new Morada('Rua principal', '1A', '9500-123', 'Ponta Delgada', 

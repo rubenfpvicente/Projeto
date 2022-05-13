@@ -8,10 +8,13 @@ class Modelo extends Colaborador
     public $medida1;
     public $medida2;
     public $medida3;
-
-    public function __construct(string $nome, Morada $morada, string $contacto, string $nif, string $sexo, string $nacionalidade, float $altura, float $medida1, float $medida2, float $medida3)
+    public $codAgente;
+    public $codMorada;
+    // agente - só irá ser preciso o código do agente
+ 
+    public function __construct(string $nome, int $codMorada, string $contacto, string $nif, string $sexo, string $nacionalidade, float $altura, float $medida1, float $medida2, float $medida3, int $codAgente = 0)
         {
-            parent::__construct($nome, $morada, $contacto, $nif);
+            parent::__construct($nome, $codMorada, $contacto, $nif);
     
             $this->sexo = $sexo;
             $this->nacionalidade = $nacionalidade;
@@ -23,7 +26,7 @@ class Modelo extends Colaborador
 
     public function exportar(): string
         {
-        return $this->codigo . ";" . $this->nome . ";" . $this->morada->exportar() . ";" ;
+        return $this->codigo . ";" . $this->nome . ";" . $this->codMorada->exportar() . ";" ;
         }
     
         public function importar(string $modelo): void

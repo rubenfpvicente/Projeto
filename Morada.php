@@ -2,6 +2,7 @@
 
 class Morada
     {
+        public $codigo;
         public $rua;
         public $porta;
         public $codigoPostal;
@@ -20,17 +21,18 @@ class Morada
     
         public function exportar(): string
         {
-            return $this->rua . "." . $this->porta . "." . $this->codigoPostal
+            return $this-> codigo . "." . $this->rua . "." . $this->porta . "." . $this->codigoPostal
                 . "." . $this->cidade . "." . $this->pais;
         }
     
         public function importar(string $morada)
         {
             $elementos = explode(".", $morada);
-            $this->rua = $elementos[0];
-            $this->porta = $elementos[1];
-            $this->codigoPostal = $elementos[2];
-            $this->cidade = $elementos[3];
-            $this->pais = $elementos[4];
+            $this->codigo = $elementos[0];
+            $this->rua = $elementos[1];
+            $this->porta = $elementos[2];
+            $this->codigoPostal = $elementos[3];
+            $this->cidade = $elementos[4];
+            $this->pais = $elementos[5];
         }
     }
