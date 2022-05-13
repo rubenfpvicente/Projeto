@@ -8,7 +8,7 @@ class Colaborador
     public $contacto;
     public $nif;
 
-    public function __construct(string $nome, Morada $codMorada, string $contacto, string $nif)
+    public function __construct(string $nome, int $codMorada, string $contacto, string $nif)
     {
         $this->nome = $nome;
         $this->morada = $codMorada;
