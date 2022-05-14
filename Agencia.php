@@ -38,6 +38,12 @@ class Agencia
         $agente->codigo = count($this->agentes);
     }
 
+    public function adicionarFotografo(Fotografo $fotografo)
+    {
+        $this->fotografos[] = $fotografo;
+        $fotografo->codigo = count($this->fotografos);
+    }
+
     public function exportar()
     {
             $ficheiro = fopen("modelos.txt", "w") or die("Não foi possível criar o ficheiro!");
@@ -63,7 +69,21 @@ class Agencia
             }
             fclose($ficheiro);
 
+            // para os fotografos
+            $ficheiro = fopen("fotografos.txt", "w") or die("Não foi possível criar o ficheiro!");
+            // modelos
+            foreach($this->fotografos as $fotografo) {
+                fwrite($ficheiro, $fotografo->exportar() . "\n");
+            }
+            fclose($ficheiro);
+
             // para os trabalhos
+            $ficheiro = fopen("trabalhos.txt", "w") or die("Não foi possível criar o ficheiro!");
+            // modelos
+            foreach($this->trabalhos as $trabalho) {
+                fwrite($ficheiro, $trabalho->exportar() . "\n");
+            }
+            fclose($ficheiro);
     }
 
     public function importar()
@@ -78,6 +98,24 @@ class Agencia
         while (!feof($moradas)) {
             $m = new Morada('', '', '', '', '');
             $this->moradas[] = $m->importar(fgets($moradas));
+        }
+
+        $agentes = fopen("agentes.txt", "r") or die("Unable to open file!");
+        while (!feof($agentes)) {
+            $a = new Agente('',0,'','','');
+            $this->agentes[] = $a->importar(fgets($agentes));
+        }
+
+        $fotografos = fopen("fotografos.txt", "r") or die("Unable to open file!");
+        while (!feof($fotografos)) {
+            $f = new Fotografo('',0,'','');
+            $this->fotografos[] = $f->importar(fgets($fotografos));
+        }
+
+        $trabalhos = fopen("trabalhos.txt", "r") or die("Unable to open file!");
+        while (!feof($trabalhos)) {
+            $t = new Trabalho('',0,'','','');
+            $this->trabalhos[] = $t->importar(fgets($trabalhos));
         }
     }
 }
