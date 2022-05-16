@@ -17,6 +17,7 @@ class Agencia
         $this->modelos = [];
         $this->agentes = [];
         $this->moradas = [];
+        $this->fotografos = [];
         $this->trabalhos = [];        
     }
 
@@ -42,6 +43,12 @@ class Agencia
     {
         $this->fotografos[] = $fotografo;
         $fotografo->codigo = count($this->fotografos);
+    }
+
+    public function adicionarTrabalho(Trabalho $trabalho)
+    {
+        $this->trabalhos[] = $trabalho;
+        $trabalho->codTrabalho = count($this->trabalhos);
     }
 
     public function exportar()
@@ -90,7 +97,7 @@ class Agencia
     {
         $modelos = fopen("modelos.txt", "r") or die("Unable to open file!");
         while (!feof($modelos)) {
-            $m = new Modelo('', 0, '', '', '','','','','','');
+            $m = new Modelo('', 0, '', '', '','',0,0,0,0);
             $this->modelos[] = $m->importar(fgets($modelos));
         }
 
@@ -114,8 +121,9 @@ class Agencia
 
         $trabalhos = fopen("trabalhos.txt", "r") or die("Unable to open file!");
         while (!feof($trabalhos)) {
-            $t = new Trabalho('',0,'','','');
+            $t = new Trabalho(0,'','',0,0);
             $this->trabalhos[] = $t->importar(fgets($trabalhos));
         }
     }
+
 }

@@ -33,4 +33,6 @@ class Trabalho {
         $this->codModelo = $elementos[4];
         $this->codFotografo = $elementos[5];
     }
+
+    
 }
