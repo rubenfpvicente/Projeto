@@ -125,11 +125,25 @@ if(isset($_POST['modelo'])){
 
     $agencia->adicionarMorada($morada);
 
+    $lermoradas= fopen("moradas.txt", 'a+');
+        $ultimo = 0;
+        while (($linha = fgets($lermoradas)) != false) {
+            $array = explode(";", $linha);
+            $ultimo = $array[0];
+        }
+        fclose($lermoradas);
+
+        $ultimo++ ;
+
+    $gravarmorada = fopen('moradas.txt', 'a') or die('Não foi possivel abrir Moradas');
+    fwrite($gravarmorada, $ultimo . ";" . $morada->exportar() . "\n");
+    fclose($gravarmorada);
+
     $modelo = new Modelo($nome, $morada->codigo, $contacto, $nif, $sexo, $nacionalidade,$altura, $medida1,$medida2,$medida3,0);
 
     $agencia->adicionarModelo($modelo);
 
-        $lermodelos= fopen("modelos.txt", 'w');
+        $lermodelos= fopen("modelos.txt", 'a+');
         $ultimo = 0;
         while (($linha = fgets($lermodelos)) != false) {
             $array = explode(";", $linha);
@@ -143,7 +157,6 @@ if(isset($_POST['modelo'])){
     fwrite($gravarmodelo, $ultimo . ";" . $modelo->exportar() . "\n");
     fclose($gravarmodelo);
     
-
     header('Location: modelo.html');
     
 }
@@ -234,9 +247,37 @@ if(isset($_POST['agente'])){
     
     $agencia->adicionarMorada($morada);
 
+    $lermoradas= fopen("moradas.txt", 'a+');
+    $ultimo = 0;
+    while (($linha = fgets($lermoradas)) != false) {
+        $array = explode(";", $linha);
+        $ultimo = $array[0];
+    }
+    fclose($lermoradas);
+
+    $ultimo++ ;
+
+    $gravarmorada = fopen('moradas.txt', 'a') or die('Não foi possivel abrir Moradas');
+    fwrite($gravarmorada, $ultimo . ";" . $morada->exportar() . "\n");
+    fclose($gravarmorada);
+
     $agente = new Agente($nome, $morada->codigo, $contacto, $nif, $dataInicio);
 
     $agencia->adicionarAgente($agente);
+
+    $leragentes= fopen("agentes.txt", 'a+');
+    $ultimo = 0;
+    while (($linha = fgets($leragentes)) != false) {
+        $array = explode(";", $linha);
+        $ultimo = $array[0];
+    }
+    fclose($leragentes);
+
+    $ultimo++ ;
+
+    $gravaragente = fopen('agentes.txt', 'a') or die('Não foi possivel abrir Agentes');
+    fwrite($gravaragente, $ultimo . ";" . $agente->exportar() . "\n");
+    fclose($gravaragente);
 
     header('Location: agente.html');
     
@@ -322,9 +363,37 @@ if(isset($_POST['fotografo'])){
 
     $agencia->adicionarMorada($morada);
 
+    $lermoradas= fopen("moradas.txt", 'a+');
+    $ultimo = 0;
+    while (($linha = fgets($lermoradas)) != false) {
+        $array = explode(";", $linha);
+        $ultimo = $array[0];
+    }
+    fclose($lermoradas);
+
+    $ultimo++ ;
+
+    $gravarmorada = fopen('moradas.txt', 'a') or die('Não foi possivel abrir Moradas');
+    fwrite($gravarmorada, $ultimo . ";" . $morada->exportar() . "\n");
+    fclose($gravarmorada);
+
     $fotografo = new Fotografo($nome, $morada->codigo, $contacto, $nif);
 
     $agencia->adicionarFotografo($fotografo);
+
+    $lerfotografos= fopen("fotografos.txt", 'a+');
+    $ultimo = 0;
+    while (($linha = fgets($lerfotografos)) != false) {
+        $array = explode(";", $linha);
+        $ultimo = $array[0];
+    }
+    fclose($lerfotografos);
+
+    $ultimo++ ;
+
+    $gravarfotografo = fopen('fotografos.txt', 'a') or die('Não foi possivel abrir Fotografos');
+    fwrite($gravarfotografo, $ultimo . ";" . $fotografo->exportar() . "\n");
+    fclose($gravarfotografo);
 
     header('Location: fotografo.html');
     
@@ -340,6 +409,20 @@ if(isset($_POST['trabalho'])){
     $trabalho = new Trabalho($agente, $dataInicio, $dataFim, $modelo, $fotografo);
 
     $agencia->adicionarTrabalho($trabalho);
+
+    $lertrabalhos= fopen("trabalhos.txt", 'a+');
+    $ultimo = 0;
+    while (($linha = fgets($lertrabalhos)) != false) {
+        $array = explode(";", $linha);
+        $ultimo = $array[0];
+    }
+    fclose($lertrabalhos);
+
+    $ultimo++ ;
+
+    $gravartrabalho = fopen('trabalhos.txt', 'a') or die('Não foi possivel abrir Trabalhos');
+    fwrite($gravartrabalho, $ultimo . ";" . $trabalho->exportar() . "\n");
+    fclose($gravartrabalho);
 
     header('Location: trabalho.html');
     
