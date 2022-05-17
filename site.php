@@ -121,13 +121,28 @@ if(isset($_POST['modelo'])){
 
     $codPostal = $codPostal1 . "-" . $codPostal2;
 
-    $morada=new Morada($rua,$porta,$codpostal, $cidade, $pais);
+    $morada=new Morada($rua,$porta,$codPostal, $cidade, $pais);
 
     $agencia->adicionarMorada($morada);
 
     $modelo = new Modelo($nome, $morada->codigo, $contacto, $nif, $sexo, $nacionalidade,$altura, $medida1,$medida2,$medida3,0);
 
     $agencia->adicionarModelo($modelo);
+
+        $lermodelos= fopen("modelos.txt", 'w');
+        $ultimo = 0;
+        while (($linha = fgets($lermodelos)) != false) {
+            $array = explode(";", $linha);
+            $ultimo = $array[0];
+        }
+        fclose($lermodelos);
+
+        $ultimo++ ;
+
+    $gravarmodelo = fopen('modelos.txt', 'a') or die('Não foi possivel abrir Modelos');
+    fwrite($gravarmodelo, $ultimo . ";" . $modelo->exportar() . "\n");
+    fclose($gravarmodelo);
+    
 
     header('Location: modelo.html');
     
@@ -209,7 +224,7 @@ if(isset($_POST['agente'])){
     }
 
     if ($dataInicio== '') {
-        echo "Tem que indicar o nome do agente";
+        echo "Tem que indicar a data de inicio de atividades";
         exit;
     }
     
@@ -303,7 +318,7 @@ if(isset($_POST['fotografo'])){
 
     $codPostal = $codPostal1 . "-" . $codPostal2;
     
-    $morada=new Morada($rua,$porta,$codpostal, $cidade, $pais);
+    $morada=new Morada($rua,$porta,$codPostal, $cidade, $pais);
 
     $agencia->adicionarMorada($morada);
 
@@ -322,8 +337,6 @@ if(isset($_POST['trabalho'])){
     $modelo=$_POST["modelo"];
     $fotografo=$_POST["fotografo"];
 
-
-
     $trabalho = new Trabalho($agente, $dataInicio, $dataFim, $modelo, $fotografo);
 
     $agencia->adicionarTrabalho($trabalho);
@@ -331,6 +344,3 @@ if(isset($_POST['trabalho'])){
     header('Location: trabalho.html');
     
 }
-
-$agencia->exportar();
-
