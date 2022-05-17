@@ -27,7 +27,7 @@ if(isset($_POST['modelo'])){
     $medida3=$_POST["medida3"];
     
     if ($nome == '') {
-        echo "Tem que indicar o nome do cliente";
+        echo "Tem que indicar o nome do modelo";
         exit;
     }
     
@@ -86,6 +86,36 @@ if(isset($_POST['modelo'])){
     
     if (!is_numeric($nif)){
         echo "O nif contem apenas numeros";
+        exit;
+    }
+
+    if ($sexo == '') {
+        echo "Tem que indicar o sexo do modelo";
+        exit;
+    }
+
+    if ($nacionalidade == '') {
+        echo "Tem que indicar a nacionalidade do modelo";
+        exit;
+    }
+
+    if (!is_numeric($altura)){
+        echo "A altura contem apenas numeros";
+        exit;
+    }
+
+    if (!is_numeric($medida1)){
+        echo "A medida contem apenas numeros";
+        exit;
+    }
+
+    if (!is_numeric($medida2)){
+        echo "A medida contem apenas numeros";
+        exit;
+    }
+
+    if (!is_numeric($medida3)){
+        echo "A medida contem apenas numeros";
         exit;
     }
 
@@ -116,7 +146,7 @@ if(isset($_POST['agente'])){
     $dataInicio=$_POST["dataInicio"];
 
     if ($nome == '') {
-        echo "Tem que indicar o nome do cliente";
+        echo "Tem que indicar o nome do agente";
         exit;
     }
     
@@ -178,6 +208,10 @@ if(isset($_POST['agente'])){
         exit;
     }
 
+    if ($dataInicio== '') {
+        echo "Tem que indicar o nome do agente";
+        exit;
+    }
     
     $codPostal = $codPostal1 . "-" . $codPostal2;
     
@@ -205,7 +239,7 @@ if(isset($_POST['fotografo'])){
     $nif=$_POST["NIF"];
     
     if ($nome == '') {
-        echo "Tem que indicar o nome do cliente";
+        echo "Tem que indicar o nome do fotografo";
         exit;
     }
     
@@ -281,7 +315,22 @@ if(isset($_POST['fotografo'])){
     
 }
 
+if(isset($_POST['trabalho'])){
+    $agente=$_POST["agente"];
+    $dataInicio=$_POST["dataInicio"];
+    $dataFim=$_POST["dataFim"];
+    $modelo=$_POST["modelo"];
+    $fotografo=$_POST["fotografo"];
 
+
+
+    $trabalho = new Trabalho($agente, $dataInicio, $dataFim, $modelo, $fotografo);
+
+    $agencia->adicionarTrabalho($trabalho);
+
+    header('Location: trabalho.html');
+    
+}
 
 $agencia->exportar();
 
