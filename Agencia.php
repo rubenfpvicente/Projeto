@@ -115,7 +115,7 @@ class Agencia
 
         $fotografos = fopen("fotografos.txt", "r") or die("Unable to open file!");
         while (!feof($fotografos)) {
-            $f = new Fotografo('',0,'','');
+            $f = new Fotografo('',0,'','','');
             $this->fotografos[] = $f->importar(fgets($fotografos));
         }
 

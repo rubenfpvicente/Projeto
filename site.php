@@ -401,31 +401,3 @@ if(isset($_POST['fotografo'])){
     
 }
 
-if(isset($_POST['trabalho'])){
-    $agente=$_POST["agente"];
-    $dataInicio=$_POST["dataInicio"];
-    $dataFim=$_POST["dataFim"];
-    $modelo=$_POST["modelo"];
-    $fotografo=$_POST["fotografo"];
-
-    $trabalho = new Trabalho($agente, $dataInicio, $dataFim, $modelo, $fotografo);
-
-    $agencia->adicionarTrabalho($trabalho);
-
-    $lertrabalhos= fopen("trabalhos.txt", 'a+');
-    $ultimo = 0;
-    while (($linha = fgets($lertrabalhos)) != false) {
-        $array = explode(";", $linha);
-        $ultimo = $array[0];
-    }
-    fclose($lertrabalhos);
-
-    $ultimo++ ;
-
-    $gravartrabalho = fopen('trabalhos.txt', 'a') or die('Não foi possivel abrir Trabalhos');
-    fwrite($gravartrabalho, $ultimo . ";" . $trabalho->exportar() . "\n");
-    fclose($gravartrabalho);
-
-    header('Location: trabalho.html');
-    
-}

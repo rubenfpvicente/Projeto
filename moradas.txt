@@ -1,3 +1,5 @@
 1;1;Rua de Cima;12;9500-111;Ponta Delgada;Portugal
 2;1;Rua Mãe de Deus;69;9500-500;Ponta Delgada;Portugal
 3;1;Rua de Cima;12;9500-500;Ponta Delgada;Portugal
+4;1;Rua de Cima;12;9500-950;Ponta Delgada;Portugal
+5;1;Rua de Cima;11;9500-950;Ponta Delgada;Portugal

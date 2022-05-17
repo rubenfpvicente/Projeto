@@ -5,21 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fotografo</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-    <form action="site.php" method="post">
-        Nome &#160 <input type="text" name="Nome" id=""><br>
-        NIF&#160 <input type="number" name="NIF" id=""  ><br>
-        Código Postal &#160 <input type="number" name="codPostal1" id=""required minlength="4" maxlength="4">
-         - <input type="number" name="codPostal2" id="" required minlength="3" maxlength="3">
-        Morada &#160 <input type="text" name="rua" id=""> n.º <input type="number" name="porta" id="" required>
-        Cidade &#160 <input type="text" name="cidade" id=""><br>
-        País &#160 <input type="text" name="País" id=""><br>
-        Contacto &#160 <input type="text" name="Contacto" id="" ><br>
-        Inicio de atividades &#160 <input type="date" name="dataInicio" id=""><br>
-        <input type="submit" name="fotografo" value="Adicionar">
-    </form>
+    <div class="container-fluid px-1 py-5 mx-auto">
+        <div class="row d-flex justify-content-center">
+            <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+                <h3>Fotógrafo</h3>
+                <div class="card">
+                    <h5 class="text-center mb-4">Adicionar Fotógrafo</h5>
+                    <form class="form-card"  method="post" action="site.php" >
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Nome<span class="text-danger"> *</span></label> <input type="text" name="Nome" placeholder="" onblur="validate(1)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">NIF<span class="text-danger"> *</span></label> <input type="text" id="NIF" name="NIF" placeholder="" onblur="validate(2)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Morada<span class="text-danger"> *</span></label> <input type="text" id="rua" name="rua" placeholder="Rua" onblur="validate(3)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Número<span class="text-danger"> *</span></label> <input type="number" id="porta" name="porta" placeholder="" onblur="validate(4)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Código Postal<span class="text-danger"> *</span></label> <input type="number" id="codPostal1" name="codPostal1" placeholder="Código Postal" onblur="validate(3)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3"><span class="text-danger"> .</span></label> <input type="number" id="codPostal2" name="codPostal2" placeholder="" onblur="validate(4)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Cidade<span class="text-danger"> *</span></label> <input type="text" id="cidade" name="cidade" placeholder="" onblur="validate(5)"> </div>
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">País<span class="text-danger"> *</span></label> <input type="text" id="País" name="País" placeholder="" onblur="validate(5)"> </div>
+                        </div>
+                        <div class="row justify-content-between text-left">
+                            <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Contacto<span class="text-danger"> *</span></label> <input type="text" id="Contacto" name="Contacto" placeholder="" onblur="validate(5)"> </div>
+                        </div>
+                        <div class="row justify-content-end">
+                            <div class="form-group col-sm-6"> <button type="submit" name="fotografo" class="btn-block btn-primary">Adicionar</button> </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 </html>
