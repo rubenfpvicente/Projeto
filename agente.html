@@ -11,13 +11,13 @@
     <form action="site.php" method="post">
         Nome &#160 <input type="text" name="Nome" id=""><br>
         NIF&#160 <input type="text" name="NIF" id=""  ><br>
-        Código Postal &#160 <input type="text" name="codPostal">
+        Código Postal &#160 <input type="number" name="codPostal1" id=""required minlength="4" maxlength="4">
+         - <input type="number" name="codPostal2" id="" required minlength="3" maxlength="3">
         Morada &#160 <input type="text" name="rua" id=""> n.º <input type="number" name="porta" id="" required>
         Cidade &#160 <input type="text" name="cidade" id=""><br>
         País &#160 <input type="text" name="País" id=""><br>
         Contacto &#160 <input type="text" name="Contacto" id="" ><br>
-        Inicio de atividades &#160 <input type="text" name="dataInicio" id=""><br>
-        Representações &#160 <input type="text" name="Representações" id=""><br>
+        Inicio de atividades &#160 <input type="date" name="dataInicio" id=""><br>
         <input type="submit" name="agente" value="Adicionar">
     </form>
 
