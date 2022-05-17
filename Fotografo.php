@@ -2,8 +2,10 @@
 
 class Fotografo extends Colaborador 
 {
-    public function __construct(string $nome, int $codMorada, string $contacto, string $nif) {
+    public $dataInicio;
+    public function __construct(string $nome, int $codMorada, string $contacto, string $nif, string $dataInicio) {
         parent::__construct($nome, $codMorada, $contacto, $nif);
+        $this->dataInicio = $dataInicio;
     }
 
     public function exportar(): string

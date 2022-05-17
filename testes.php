@@ -31,7 +31,7 @@ $modelo = new Modelo('Roberta', $morada2->codigo, '123', '999000', 'Feminino',
     'Italiana', 1.75, 1, 2, 3, 1);
 $agencia->adicionarModelo($modelo);
 
-$fotografo = new Fotografo('Marcelo', $morada->codigo, '123', '99999');
+$fotografo = new Fotografo('Marcelo', $morada->codigo, '123', '99999', '1986-01-02');
 $agencia->adicionarFotografo($fotografo);
 
 $trabalho = new Trabalho($agente->codigo, '1999-01-01','', $modelo->codigo, $fotografo->codigo);

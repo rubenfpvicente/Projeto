@@ -293,6 +293,7 @@ if(isset($_POST['fotografo'])){
     $pais=$_POST["País"];
     $contacto=$_POST["Contacto"];
     $nif=$_POST["NIF"];
+    $dataInicio=$_POST["dataInicio"];
     
     if ($nome == '') {
         echo "Tem que indicar o nome do fotografo";
@@ -368,6 +369,7 @@ if(isset($_POST['fotografo'])){
     while (($linha = fgets($lermoradas)) != false) {
         $array = explode(";", $linha);
         $ultimo = $array[0];
+        $codMorada = $array[0];
     }
     fclose($lermoradas);
 
@@ -377,7 +379,7 @@ if(isset($_POST['fotografo'])){
     fwrite($gravarmorada, $ultimo . ";" . $morada->exportar() . "\n");
     fclose($gravarmorada);
 
-    $fotografo = new Fotografo($nome, $morada->codigo, $contacto, $nif);
+    $fotografo = new Fotografo($nome, $codMorada, $contacto, $nif, $dataInicio);
 
     $agencia->adicionarFotografo($fotografo);
 
