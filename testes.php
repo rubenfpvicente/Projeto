@@ -38,5 +38,3 @@ $trabalho = new Trabalho($agente->codigo, '1999-01-01','', $modelo->codigo, $fot
 $agencia->adicionarTrabalho($trabalho);
 
 $agencia->exportar();
-
-$modelo->importar('modelos.txt');
