@@ -1,36 +1,47 @@
 <?php
 
-require_once 'Morada.php';
 require_once 'Agente.php';
 require_once 'Modelo.php';
 
 class Agencia
 {
+    /**
+     * Lista dos modelos da agência
+     *
+     * @var array
+     */
     public $modelos;
+    /**
+     * Lista dos agentes da agência
+     *
+     * @var array
+     */
     public $agentes;
+    /**
+     * Lista dos fotografos da agência
+     *
+     * @var array
+     */
     public $fotografos;
-    public $moradas;
-    public $trabalhos;
+    /**
+     * Lista dos portefolios da agência
+     *
+     * @var array
+     */
+    public $portefolios;
 
     public function __construct()
     {
         $this->modelos = [];
         $this->agentes = [];
-        $this->moradas = [];
         $this->fotografos = [];
-        $this->trabalhos = [];        
+        $this->portefolios = [];        
     }
 
     public function adicionarModelo(Modelo $modelo)
     {
         $this->modelos[] = $modelo;
         $modelo->codigo = count($this->modelos);
-    }
-
-    public function adicionarMorada(Morada $morada)
-    {
-        $this->moradas[] = $morada;
-        $morada->codigo = count($this->moradas);
     }
 
     public function adicionarAgente(Agente $agente)
@@ -45,10 +56,10 @@ class Agencia
         $fotografo->codigo = count($this->fotografos);
     }
 
-    public function adicionarTrabalho(Trabalho $trabalho)
+    public function adicionarPortefolio(Portefolio $portefolio)
     {
-        $this->trabalhos[] = $trabalho;
-        $trabalho->codTrabalho = count($this->trabalhos);
+        $this->portefolios[] = $portefolio;
+        $portefolio->codPortefolio = count($this->portefolios);
     }
 
     public function exportar()
@@ -57,14 +68,6 @@ class Agencia
             // modelos
             foreach($this->modelos as $modelo) {
                 fwrite($ficheiro, $modelo->exportar() . "\n");
-            }
-            fclose($ficheiro);
-
-            // a mesma coisa para os moradas
-            $ficheiro = fopen("moradas.txt", "w") or die("Não foi possível criar o ficheiro!");
-            // modelos
-            foreach($this->moradas as $morada) {
-                fwrite($ficheiro, $morada->exportar() . "\n");
             }
             fclose($ficheiro);
 
@@ -84,11 +87,11 @@ class Agencia
             }
             fclose($ficheiro);
 
-            // para os trabalhos
-            $ficheiro = fopen("trabalhos.txt", "w") or die("Não foi possível criar o ficheiro!");
+            // para os portefolios
+            $ficheiro = fopen("portefolios.txt", "w") or die("Não foi possível criar o ficheiro!");
             // modelos
-            foreach($this->trabalhos as $trabalho) {
-                fwrite($ficheiro, $trabalho->exportar() . "\n");
+            foreach($this->portefolios as $portefolio) {
+                fwrite($ficheiro, $portefolio->exportar() . "\n");
             }
             fclose($ficheiro);
     }
@@ -97,14 +100,8 @@ class Agencia
     {
         $modelos = fopen("modelos.txt", "r") or die("Unable to open file!");
         while (!feof($modelos)) {
-            $m = new Modelo('', 0, '', '', '','',0,0,0,0);
+            $m = new Modelo('',0,'','','','',0,0,0,0);
             $this->modelos[] = $m->importar(fgets($modelos));
-        }
-
-        $moradas = fopen("moradas.txt", "r") or die("Unable to open file!");
-        while (!feof($moradas)) {
-            $m = new Morada('', '', '', '', '');
-            $this->moradas[] = $m->importar(fgets($moradas));
         }
 
         $agentes = fopen("agentes.txt", "r") or die("Unable to open file!");
@@ -115,15 +112,111 @@ class Agencia
 
         $fotografos = fopen("fotografos.txt", "r") or die("Unable to open file!");
         while (!feof($fotografos)) {
-            $f = new Fotografo('',0,'','','');
+            $f = new Fotografo('','','','','','','','','');
             $this->fotografos[] = $f->importar(fgets($fotografos));
         }
 
-        $trabalhos = fopen("trabalhos.txt", "r") or die("Unable to open file!");
-        while (!feof($trabalhos)) {
-            $t = new Trabalho(0,'','',0,0);
-            $this->trabalhos[] = $t->importar(fgets($trabalhos));
+        $portefolios = fopen("portefolios.txt", "r") or die("Unable to open file!");
+        while (!feof($portefolios)) {
+            $t = new Portefolio(0,'','',0,0);
+            $this->portefolios[] = $t->importar(fgets($portefolios));
         }
     }
 
+
+    /**
+     * Get lista dos modelos da agência
+     *
+     * @return  array
+     */ 
+    public function getModelos()
+    {
+        return $this->modelos;
+    }
+
+    /**
+     * Set lista dos modelos da agência
+     *
+     * @param  array  $modelos  Lista dos modelos da agência
+     *
+     * @return  self
+     */ 
+    public function setModelos(array $modelos)
+    {
+        $this->modelos = $modelos;
+
+        return $this;
+    }
+
+    /**
+     * Get lista dos agentes da agência
+     *
+     * @return  array
+     */ 
+    public function getAgentes()
+    {
+        return $this->agentes;
+    }
+
+    /**
+     * Set lista dos agentes da agência
+     *
+     * @param  array  $agentes  Lista dos agentes da agência
+     *
+     * @return  self
+     */ 
+    public function setAgentes(array $agentes)
+    {
+        $this->agentes = $agentes;
+
+        return $this;
+    }
+
+    /**
+     * Get lista dos fotografos da agência
+     *
+     * @return  array
+     */ 
+    public function getFotografos()
+    {
+        return $this->fotografos;
+    }
+
+    /**
+     * Set lista dos fotografos da agência
+     *
+     * @param  array  $fotografos  Lista dos fotografos da agência
+     *
+     * @return  self
+     */ 
+    public function setFotografos(array $fotografos)
+    {
+        $this->fotografos = $fotografos;
+
+        return $this;
+    }
+
+    /**
+     * Get lista dos portefolios da agência
+     *
+     * @return  array
+     */ 
+    public function getPortefolios()
+    {
+        return $this->portefolios;
+    }
+
+    /**
+     * Set lista dos portefolios da agência
+     *
+     * @param  array  $portefolios  Lista dos portefolios da agência
+     *
+     * @return  self
+     */ 
+    public function setPortefolios(array $portefolios)
+    {
+        $this->portefolios = $portefolios;
+
+        return $this;
+    }
 }

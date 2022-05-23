@@ -1,11 +1,12 @@
 <?php
 
-class Trabalho {
+class Portefolio{
     public $codAgente;
     public $dataInicio;
     public $dataFim;
     public $codModelo;
     public $codFotografo;
+    public $fotografias;
 
     public function __construct(int $codAgente, string $dataInicio, string $dataFim, int $codModelo, int $codFotografo) 
     {
@@ -14,6 +15,7 @@ class Trabalho {
         $this->dataFim = $dataFim;
         $this->codModelo = $codModelo;
         $this->codFotografo = $codFotografo;
+        $this->fotografias = [];
     }
 
     public function exportar(): string
@@ -31,5 +33,11 @@ class Trabalho {
         $this->dataFim = $elementos[3];
         $this->codModelo = $elementos[4];
         $this->codFotografo = $elementos[5];
+    }
+
+    public function adicionarFotografia (Fotografia $fotografia) 
+    {
+        $this->fotografias[] = $fotografia;
+        $fotografia->codFotografia = count($this->fotografias);
     }
 } 
