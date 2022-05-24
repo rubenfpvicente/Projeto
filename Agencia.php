@@ -1,7 +1,5 @@
 <?php
 
-require_once 'Agente.php';
-require_once 'Modelo.php';
 
 class Agencia
 {
@@ -29,13 +27,20 @@ class Agencia
      * @var array
      */
     public $portefolios;
+    /**
+     * Lista das fotografias da agência
+     *
+     * @var array
+     */
+    public $fotografias;
 
     public function __construct()
     {
         $this->modelos = [];
         $this->agentes = [];
         $this->fotografos = [];
-        $this->portefolios = [];        
+        $this->portefolios = [];   
+        $this->fotografias = [];     
     }
 
     public function adicionarModelo(Modelo $modelo)
@@ -60,6 +65,12 @@ class Agencia
     {
         $this->portefolios[] = $portefolio;
         $portefolio->codPortefolio = count($this->portefolios);
+    }
+
+    public function adicionarFotografia (Fotografia $fotografia) 
+    {
+        $this->fotografias[] = $fotografia;
+        $fotografia->codFotografia = count($this->fotografias);
     }
 
     public function exportar()
@@ -94,6 +105,14 @@ class Agencia
                 fwrite($ficheiro, $portefolio->exportar() . "\n");
             }
             fclose($ficheiro);
+
+            // para as fotografias
+            $ficheiro = fopen("fotografias.txt", "w") or die("Não foi possível criar o ficheiro!");
+            // modelos
+            foreach($this->fotografias as $fotografia) {
+                fwrite($ficheiro, $fotografia->exportar() . "\n");
+            }
+            fclose($ficheiro);
     }
 
     public function importar()
@@ -106,7 +125,7 @@ class Agencia
 
         $agentes = fopen("agentes.txt", "r") or die("Unable to open file!");
         while (!feof($agentes)) {
-            $a = new Agente('',0,'','','');
+            $a = new Agente('','','','','','','','','');
             $this->agentes[] = $a->importar(fgets($agentes));
         }
 
@@ -118,8 +137,14 @@ class Agencia
 
         $portefolios = fopen("portefolios.txt", "r") or die("Unable to open file!");
         while (!feof($portefolios)) {
-            $t = new Portefolio(0,'','',0,0);
-            $this->portefolios[] = $t->importar(fgets($portefolios));
+            $p = new Portefolio(0,"","",0,0);
+            $this->portefolios[] = $p->importar(fgets($portefolios));
+        }
+
+        $fotografias = fopen("fotografias.txt", "r") or die("Unable to open file!");
+        while (!feof($fotografias)) {
+            $ft = new Fotografia(0,0);
+            $this->fotografias[] = $ft->importar(fgets($fotografias));
         }
     }
 
@@ -216,6 +241,30 @@ class Agencia
     public function setPortefolios(array $portefolios)
     {
         $this->portefolios = $portefolios;
+
+        return $this;
+    }
+
+    /**
+     * Get lista das fotografias da agência
+     *
+     * @return  array
+     */ 
+    public function getFotografias()
+    {
+        return $this->fotografias;
+    }
+
+    /**
+     * Set lista das fotografias da agência
+     *
+     * @param  array  $fotografias  Lista das fotografias da agência
+     *
+     * @return  self
+     */ 
+    public function setFotografias(array $fotografias)
+    {
+        $this->fotografias = $fotografias;
 
         return $this;
     }

@@ -5,12 +5,47 @@ require_once 'Agencia.php';
 
 class Modelo extends Colaborador
 {
+    /**
+     * sexo do modelo
+     *
+     * @var string
+     */
     public $sexo;
+    /**
+     * nacionalidade do modelo
+     *
+     * @var string
+     */
     public $nacionalidade;
+    /**
+     * altura do modelo
+     *
+     * @var float
+     */
     public $altura;
+    /**
+     * medida1 do modelo
+     *
+     * @var float
+     */
     public $medida1;
+    /**
+     * medida2 do modelo
+     *
+     * @var float
+     */
     public $medida2;
+    /**
+     * medida3 do modelo
+     *
+     * @var float
+     */
     public $medida3;
+    /**
+     * codigo do agente do modelo
+     *
+     * @var int
+     */
     public $codAgente;
 
 
@@ -58,6 +93,174 @@ class Modelo extends Colaborador
         $this->codAgente = $elementos[15];
     }
 
+
+    /**
+     * Get sexo do modelo
+     *
+     * @return  string
+     */ 
+    public function getSexo()
+    {
+        return $this->sexo;
+    }
+
+    /**
+     * Set sexo do modelo
+     *
+     * @param  string  $sexo  sexo do modelo
+     *
+     * @return  self
+     */ 
+    public function setSexo(string $sexo)
+    {
+        $this->sexo = $sexo;
+
+        return $this;
+    }
+
+    /**
+     * Get nacionalidade do modelo
+     *
+     * @return  string
+     */ 
+    public function getNacionalidade()
+    {
+        return $this->nacionalidade;
+    }
+
+    /**
+     * Set nacionalidade do modelo
+     *
+     * @param  string  $nacionalidade  nacionalidade do modelo
+     *
+     * @return  self
+     */ 
+    public function setNacionalidade(string $nacionalidade)
+    {
+        $this->nacionalidade = $nacionalidade;
+
+        return $this;
+    }
+
+    /**
+     * Get altura do modelo
+     *
+     * @return  float
+     */ 
+    public function getAltura()
+    {
+        return $this->altura;
+    }
+
+    /**
+     * Set altura do modelo
+     *
+     * @param  float  $altura  altura do modelo
+     *
+     * @return  self
+     */ 
+    public function setAltura(float $altura)
+    {
+        $this->altura = $altura;
+
+        return $this;
+    }
+
+    /**
+     * Get medida1 do modelo
+     *
+     * @return  float
+     */ 
+    public function getMedida1()
+    {
+        return $this->medida1;
+    }
+
+    /**
+     * Set medida1 do modelo
+     *
+     * @param  float  $medida1  medida1 do modelo
+     *
+     * @return  self
+     */ 
+    public function setMedida1(float $medida1)
+    {
+        $this->medida1 = $medida1;
+
+        return $this;
+    }
+
+    /**
+     * Get medida2 do modelo
+     *
+     * @return  float
+     */ 
+    public function getMedida2()
+    {
+        return $this->medida2;
+    }
+
+    /**
+     * Set medida2 do modelo
+     *
+     * @param  float  $medida2  medida2 do modelo
+     *
+     * @return  self
+     */ 
+    public function setMedida2(float $medida2)
+    {
+        $this->medida2 = $medida2;
+
+        return $this;
+    }
+
+    /**
+     * Get medida3 do modelo
+     *
+     * @return  float
+     */ 
+    public function getMedida3()
+    {
+        return $this->medida3;
+    }
+
+    /**
+     * Set medida3 do modelo
+     *
+     * @param  float  $medida3  medida3 do modelo
+     *
+     * @return  self
+     */ 
+    public function setMedida3(float $medida3)
+    {
+        $this->medida3 = $medida3;
+
+        return $this;
+    }
+
+    /**
+     * Get codigo do agente do modelo
+     *
+     * @return  int
+     */ 
+    public function getCodAgente()
+    {
+        return $this->codAgente;
+    }
+
+    /**
+     * Set codigo do agente do modelo
+     *
+     * @param  int  $codAgente  codigo do agente do modelo
+     *
+     * @return  self
+     */ 
+    public function setCodAgente(int $codAgente)
+    {
+        $this->codAgente = $codAgente;
+
+        return $this;
+    }
 }
 
 ?>

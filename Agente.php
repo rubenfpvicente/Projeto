@@ -4,6 +4,11 @@ require_once 'Colaborador.php';
 
 class Agente extends Colaborador
 {
+    /**
+     * data de inicio do agente
+     *
+     * @var string
+     */
     public $dataInicio;
 
     public function __construct(string $nome, string $rua, string $porta, string $codigoPostal, 
@@ -36,4 +41,28 @@ class Agente extends Colaborador
         $this->dataInicio = $elementos[9];
     }
 
+
+    /**
+     * Get data de inicio do agente
+     *
+     * @return  string
+     */ 
+    public function getDataInicio()
+    {
+        return $this->dataInicio;
+    }
+
+    /**
+     * Set data de inicio do agente
+     *
+     * @param  string  $dataInicio  data de inicio do agente
+     *
+     * @return  self
+     */ 
+    public function setDataInicio(string $dataInicio)
+    {
+        $this->dataInicio = $dataInicio;
+
+        return $this;
+    }
 }
